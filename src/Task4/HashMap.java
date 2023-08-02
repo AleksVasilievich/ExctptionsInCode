@@ -3,7 +3,7 @@ package Task4;
 import java.util.Iterator;
 
 
-public class HashMap<K, V> implements Iterable {
+public class HashMap<K, V> implements Iterable<HashMap.Entity> {
 
     private static final int INIT_BUCKET_COUNT = 16;
     private static final double LOAD_FACTOR = 0.5;
@@ -16,12 +16,13 @@ public class HashMap<K, V> implements Iterable {
 
     private Bucket[] buckets;
 
+
     @Override
     public Iterator iterator() {
         return new HashMapIterator();
     }
 
-    class HashMapIterator implements Iterator {
+    class HashMapIterator implements Iterator<Entity> {
 
         private int currentBucketIndex;
         private Bucket.Node currentNode;
@@ -46,6 +47,7 @@ public class HashMap<K, V> implements Iterable {
 
         @Override
         public Entity next() {
+
             if (currentNode != null && currentNode.next != null) {
                 currentNode = currentNode.next;
             } else {
@@ -57,7 +59,8 @@ public class HashMap<K, V> implements Iterable {
                     currentNode = buckets[currentBucketIndex].head;
                 }
             }
-            return currentNode != null ? currentNode.value : null;
+            if (currentNode != null) {return currentNode.value;}
+            return null;
         }
 
     }
@@ -224,6 +227,7 @@ public class HashMap<K, V> implements Iterable {
     public HashMap(int initCount) {
         buckets = new Bucket[initCount];
     }
+
 
 }
 
