@@ -21,23 +21,23 @@ public class Program {
         HashMap<String, String> hashMap = new HashMap<>(4);
 
 
-        String v = hashMap.put("+79854367654", "Сергей");
-        v = hashMap.put("+79045432321", "Николай");
-        v = hashMap.put("+75676789321", "Юрий");
-        v = hashMap.put("+79005551120", "Сергей1");
-        v = hashMap.put("+79005551123", "Алексей");
-        v = hashMap.put("+79005551124", "Александр1");
-        v = hashMap.put("+79005551125", "Александр2");
-        v = hashMap.put("+79005551126", "Александр3");
-        v = hashMap.put("+79005551127", "Александр4");
-        v = hashMap.put("+79005551128", "Александр5");
-        v = hashMap.put("+79105551120", "Сергей2");
-        v = hashMap.put("+79205551123", "Алексей1");
-        v = hashMap.put("+79305551124", "Александр11");
-        v = hashMap.put("+79405551125", "Александр21");
-        v = hashMap.put("+79505551126", "Александр31");
-        v = hashMap.put("+79605551127", "Александр41");
-        v = hashMap.put("+79705551128", "Александр51");
+//        String v = hashMap.put("+79854367654", "Сергей");
+//        v = hashMap.put("+79045432321", "Николай");
+//        v = hashMap.put("+75676789321", "Юрий");
+//        v = hashMap.put("+79005551120", "Сергей1");
+//        v = hashMap.put("+79005551123", "Алексей");
+//        v = hashMap.put("+79005551124", "Александр1");
+//        v = hashMap.put("+79005551125", "Александр2");
+//        v = hashMap.put("+79005551126", "Александр3");
+//        v = hashMap.put("+79005551127", "Александр4");
+//        v = hashMap.put("+79005551128", "Александр5");
+//        v = hashMap.put("+79105551120", "Сергей2");
+//        v = hashMap.put("+79205551123", "Алексей1");
+//        v = hashMap.put("+79305551124", "Александр11");
+//        v = hashMap.put("+79405551125", "Александр21");
+//        v = hashMap.put("+79505551126", "Александр31");
+//        v = hashMap.put("+79605551127", "Александр41");
+//        v = hashMap.put("+79705551128", "Александр51");
 //        System.out.println(hashMap.toString());
 
 //        System.out.println(hashMap.iterator());
