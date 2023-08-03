@@ -1,4 +1,4 @@
-package Task4;
+package Task4Algoritm;
 
 public class Employee {
     private String  name;

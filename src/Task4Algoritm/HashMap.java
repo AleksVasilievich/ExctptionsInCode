@@ -1,4 +1,4 @@
-package Task4;
+package Task4Algoritm;
 
 import java.util.Iterator;
 

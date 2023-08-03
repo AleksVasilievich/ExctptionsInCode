@@ -1,11 +1,7 @@
-package Task4;
+package Task4Algoritm;
 
 
-import Task4.HashMap.Entity;
-
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Objects;
+import Task4Algoritm.HashMap.Entity;
 
 public class Program {
     public static void main(String[] args) {
