@@ -1,4 +1,4 @@
-package ExceptionsInProgramming.Task2;
+package ExceptionsInProgramming.Task2.Namber1;
 
 import java.util.Scanner;
 
