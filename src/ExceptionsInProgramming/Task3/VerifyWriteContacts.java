@@ -29,15 +29,13 @@ import java.util.Scanner;
 
 public class VerifyWriteContacts {
 
-
-
     public static String inputContacts(){
 
-        String line = "Петров Пётр Петрович 12.12.2012 89121212121 m";
-//        Scanner in = new Scanner(System.in);
-//        String line = in.nextLine();
-//        System.out.println(line);
+        Scanner in = new Scanner(System.in);
+        String line = in.nextLine();
+        System.out.println(line);
         return line;
+//        return "Петров Пётр Петрович 12.12.2012 89121212121 m";
 
     }
 
@@ -53,33 +51,36 @@ public class VerifyWriteContacts {
     }
 
     public static String decoder(String code){
-//        String str = code;
+
         switch (code) {
             case "-1" -> {
                 System.out.println("Количество введённых данные меньше чем требуется");
                 Button.button();
-
             }
             case "1" -> {
                 System.out.println("Количество введённых данные больше чем требуется");
                 Button.button();
             }
-            case "str" ->  System.out.println("Количество введённых соответствует требованиям");
+            case "0" ->  System.out.println("Количество введённых данных соответствует требованиям");
         }
         return code;
     }
+
     public static void parseFormatContacts(String str){
+
         String[] strArray = str.split(" ");
-        
     }
-    public static void writeContacts(String str) {
-        if (str.length() > 2) {
+
+    public static void writeContacts(String code) {
+
+        if (code.length() > 2) {
             FileWriter fileWriter;
             try {
                 fileWriter = new FileWriter("src/ExceptionsInProgramming/Task3/1.txt",true);
-                fileWriter.write(str);
+                fileWriter.write(code);
                 fileWriter.append('\n');
                 fileWriter.flush();
+                System.out.println("Данные успешно сохранены \n" + code);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
