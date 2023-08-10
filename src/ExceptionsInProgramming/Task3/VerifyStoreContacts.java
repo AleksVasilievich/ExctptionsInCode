@@ -35,18 +35,35 @@ public class VerifyStoreContacts {
         return line;
     }
 
-    public static int parseContacts(String str) {
+    public static int parseNumContacts(String str) {
 
         String[] strArray = str.split(" ");
         if (strArray.length < 6)  {
-            System.out.println("Количество введённых данные меньше чем требуется");
             return -1;
         } else if (strArray.length > 6) {
-            System.out.println("Количество введённых данные больше чем требуется");
             return 1;
         }
         return 0;
     }
 
+    public static void decoder(int code){
+        switch (code){
+            case -1:
+                System.out.println("Количество введённых данные меньше чем требуется");
+                Button.button();
+                break;
+            case 1:
+                System.out.println("Количество введённых данные больше чем требуется");
+                Button.button();
+                break;
+            case 0:
+                System.out.println("Количество введённых соответствует требованиям");
+                break;
+        }
+    }
+    public static void parseFormatContacts(String str){
+        String[] strArray = str.split(" ");
+        
+    }
 }
 
