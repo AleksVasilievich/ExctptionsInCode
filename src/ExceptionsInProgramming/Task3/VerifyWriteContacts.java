@@ -1,5 +1,7 @@
 package ExceptionsInProgramming.Task3;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -25,45 +27,64 @@ import java.util.Scanner;
  * пользователь должен увидеть стектрейс ошибки.
  */
 
-public class VerifyStoreContacts {
+public class VerifyWriteContacts {
+
+
 
     public static String inputContacts(){
-        Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
-        System.out.println(line);
 
+        String line = "Петров Пётр Петрович 12.12.2012 89121212121 m";
+//        Scanner in = new Scanner(System.in);
+//        String line = in.nextLine();
+//        System.out.println(line);
         return line;
+
     }
 
-    public static int parseNumContacts(String str) {
+    public static String parseNumContacts(String str) {
 
         String[] strArray = str.split(" ");
         if (strArray.length < 6)  {
-            return -1;
+            return "-1";
         } else if (strArray.length > 6) {
-            return 1;
+            return "1";
         }
-        return 0;
+        return str;
     }
 
-    public static void decoder(int code){
-        switch (code){
-            case -1:
+    public static String decoder(String code){
+//        String str = code;
+        switch (code) {
+            case "-1" -> {
                 System.out.println("Количество введённых данные меньше чем требуется");
                 Button.button();
-                break;
-            case 1:
+
+            }
+            case "1" -> {
                 System.out.println("Количество введённых данные больше чем требуется");
                 Button.button();
-                break;
-            case 0:
-                System.out.println("Количество введённых соответствует требованиям");
-                break;
+            }
+            case "str" ->  System.out.println("Количество введённых соответствует требованиям");
         }
+        return code;
     }
     public static void parseFormatContacts(String str){
         String[] strArray = str.split(" ");
         
+    }
+    public static void writeContacts(String str) {
+        if (str.length() > 2) {
+            FileWriter fileWriter;
+            try {
+                fileWriter = new FileWriter("src/ExceptionsInProgramming/Task3/1.txt",true);
+                fileWriter.write(str);
+                fileWriter.append('\n');
+                fileWriter.flush();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }
 
