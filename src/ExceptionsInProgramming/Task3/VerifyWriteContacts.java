@@ -3,10 +3,7 @@ package ExceptionsInProgramming.Task3;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.IllegalFormatException;
-import java.util.Scanner;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -40,7 +37,8 @@ public class VerifyWriteContacts {
 //        String line = in.nextLine();
 //        System.out.println(line);
 //        return line;
-        return "Петров Пётр Петрович 12.12.2012 89121212121 m";
+        //return "Петров Пётр Петрович 12.12.2012 89121212121 m";
+        return "12.12.2012 89121212121 Петров Пётр Петрович m";
     }
 
     public static String parseNumContacts(String str) {
@@ -72,75 +70,71 @@ public class VerifyWriteContacts {
 
     public static String parseFormatContacts(String str){
         String[] array = str.split(" ");
-        //String[] array = new String[6];
-        String surname = ""; //array[0];
-        String name = ""; //array[1];
-        String patronymic = ""; //array[2];
-        String date = ""; //array[3];
-        String phoneNumber = ""; //array[4];
-        String gender = ""; //array[5];
+        String surname = "";
+        String name = "";
+        String patronymic = "";
+        String date = "";
+        String phoneNumber = "";
+        String gender = "";
         String contact = "";
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("[а-яА-ЯёЁ]+")) {
-                surname = array[i];
-//                name = array[i + 1];
-//                patronymic = array[i + 2];
-                contact = surname;// + " " + name + " " + patronymic;// + " " + date + " " + phoneNumber + " " + gender;
-                System.out.println(contact);
-            }
-       }
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("[а-яА-ЯёЁ]+")) {
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("[а-яА-ЯёЁ]+")) {
 //                surname = array[i];
-                name = array[i];
-//                patronymic = array[i + 2];
-                contact = surname + " " + name;// + " " + patronymic;// + " " + date + " " + phoneNumber + " " + gender;
-                System.out.println(contact);
-            }
-        }
+//                contact = surname;
+//                System.out.println(contact);
+//            } //else throw new IllegalArgumentException("Строка - surname(Фамилия) - содержит недопустимые символы");
+//       }
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("[а-яА-ЯёЁ]+")) {
+//                name = array[i];
+//                name = array[i];
+//                contact = surname + " " + name;
+//                System.out.println(contact);
+//            }
+//        }
         for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("[а-яА-ЯёЁ]+")) {
-//                surname = array[i];
-//                name = array[i + 1];
-                patronymic = array[i];
-                contact = surname + " " + name + " " + patronymic;// + " " + date + " " + phoneNumber + " " + gender;
-                System.out.println(contact);
-            }
+            System.out.println(array[i]);
+            if (array[i].matches("[а-яА-ЯёЁ]+"))
+                if (surname == "") {
+                    surname = array[i];
+                    System.out.println(array[i]);
+                    System.out.println(i);
+
+                }
+                if (name == ""){
+                    name = array[i];
+                    System.out.println(i);
+                }
+                if (patronymic == "") {
+                    patronymic = array[i];
+                    System.out.println(i);
+                }
+
         }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
-            date = array[i];
-            contact = surname + " " + name + " " + patronymic + " " + date;// + " " + phoneNumber + " " + gender;
-            System.out.println(contact);
+                date = array[i];
+                contact = surname + " " + name + " " + patronymic + " " + date;
+                System.out.println(contact);
             }
         }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{11}")) {
                 phoneNumber = array[i];
-                contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber;// + " " + gender;
+                contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber;
                 System.out.println(contact);
             }
         }
 
                 for (int i = 0; i < array.length; i++){
              if (array[i].matches("[mf]")) {
-                gender = array[i];
-                contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
+                 gender = array[i];
+                 contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
                 System.out.println(contact);
             }
         }
-
-
-//        String contact = null;
-//        for (int i = 0; i < array.length; i++){
-//            Boolean flag = array[i].matches("[а-яА-ЯёЁ]+");
-//            if(flag) {
-//
-//                System.out.println(array[i]);
-//            }
-//        }
         return contact;
     }
 
