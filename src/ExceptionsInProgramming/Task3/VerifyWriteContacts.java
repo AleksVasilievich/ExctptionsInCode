@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 
 public class VerifyWriteContacts {
 
+
     public static String inputContacts() {
 
 //        Scanner in = new Scanner(System.in);
@@ -79,26 +80,28 @@ public class VerifyWriteContacts {
         String gender = "";
         String contact = "";
 
+
+
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("[а-яА-ЯёЁ]+")){
                 surname = array[i];i++;
                 name = array[i];i++;
                 patronymic = array[i];
-            }else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
                 date = array[i];
                 System.out.println(contact);
-            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{11}")) {
                 phoneNumber = array[i];
                 System.out.println(contact);
-            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
 
                 for (int i = 0; i < array.length; i++){
@@ -106,17 +109,18 @@ public class VerifyWriteContacts {
                  gender = array[i];
                  contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
                  System.out.println(contact);
-            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
         return contact;
     }
 
     public static void writeContacts(String code) {
-
+        String[] arr = code.split(" ");
+        String fileName = arr[0] + ".txt";
         if (code.length() > 2) {
             FileWriter fileWriter;
             try {
-                fileWriter = new FileWriter("src/ExceptionsInProgramming/Task3/1.txt", true);
+                fileWriter = new FileWriter(fileName, true);
                 fileWriter.write(code);
                 fileWriter.append('\n');
                 fileWriter.flush();
