@@ -38,7 +38,8 @@ public class VerifyWriteContacts {
 //        System.out.println(line);
 //        return line;
         //return "Петров Пётр Петрович 12.12.2012 89121212121 m";
-        return "12.12.2012 89121212121 Петров Пётр Петрович m";
+        //return "12.12.2012 89121212121 Петров Пётр Петрович m";
+        return "m Петров Пётр Петрович 12.12.2012 89121212121";
     }
 
     public static String parseNumContacts(String str) {
@@ -77,120 +78,38 @@ public class VerifyWriteContacts {
         String phoneNumber = "";
         String gender = "";
         String contact = "";
-//        for (int i = 0; i < array.length; i++) {
-//            if (array[i].matches("[а-яА-ЯёЁ]+")) {
-//                surname = array[i];
-//                contact = surname;
-//                System.out.println(contact);
-//            } //else throw new IllegalArgumentException("Строка - surname(Фамилия) - содержит недопустимые символы");
-//       }
-//        for (int i = 0; i < array.length; i++) {
-//            if (array[i].matches("[а-яА-ЯёЁ]+")) {
-//                name = array[i];
-//                name = array[i];
-//                contact = surname + " " + name;
-//                System.out.println(contact);
-//            }
-//        }
+
         for (int i = 0; i < array.length; i++) {
-            System.out.println(array[i]);
-            if (array[i].matches("[а-яА-ЯёЁ]+"))
-                if (surname == "") {
-                    surname = array[i];
-                    System.out.println(array[i]);
-                    System.out.println(i);
-
-                }
-                if (name == ""){
-                    name = array[i];
-                    System.out.println(i);
-                }
-                if (patronymic == "") {
-                    patronymic = array[i];
-                    System.out.println(i);
-                }
-
+            if (array[i].matches("[а-яА-ЯёЁ]+")){
+                surname = array[i];i++;
+                name = array[i];i++;
+                patronymic = array[i];
+            }else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
                 date = array[i];
-                contact = surname + " " + name + " " + patronymic + " " + date;
                 System.out.println(contact);
-            }
+            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{11}")) {
                 phoneNumber = array[i];
-                contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber;
                 System.out.println(contact);
-            }
+            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
 
                 for (int i = 0; i < array.length; i++){
              if (array[i].matches("[mf]")) {
                  gender = array[i];
                  contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
-                System.out.println(contact);
-            }
+                 System.out.println(contact);
+            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
         }
         return contact;
     }
-
-//    public static String parseFormatContacts(String str) {
-//
-//        String[] array = str.split(" ");
-//        //System.out.println(Arrays.toString(array));
-//        String surname = null;
-//        String name = null;
-//        String patronymic = null;
-//        String date = null;
-//        String fone = null;
-//        String gender = null;
-//        String contact = null;
-//        //String contact = surname + " " + name + " " + patronymic + " " + date + " " + fone + " " + gender;
-//
-//        for (int i = 0; i < array.length; i++) {
-//            Boolean flag = array[i].matches("[а-яА-Я]+");
-//            if (flag) {
-//                //int num = 0;
-//                //while (num!=3){
-//                surname = array[i];
-//                name = array[i + 1];
-//                patronymic = array[i + 2];
-//                System.out.println(surname + " " + name + " " + patronymic);
-//                contact = surname + " " + name + " " + patronymic + " " + date + " " + fone + " " + gender;
-//                    //num++;
-//                //}break;
-////                surname = array[i];
-////                name = array[i + 1];
-////                patronymic = array[i + 2];
-////                System.out.println(surname + " " + name + " " + patronymic);
-////                contact = surname + " " + name + " " + patronymic + " " + date + " " + fone + " " + gender;
-//            } else throw new IllegalArgumentException("Строка содержит недопустимые символы");
-//            //return contact;
-//
-//
-//        }
-//        //System.out.println(contact);
-//        return contact;
-//
-//
-////        for (int i = 0; i < array.length; i++) {
-////            if(!str.matches("[а-яА-Я]+")){
-////                throw new IllegalArgumentException("Строка содержит недопустимые символы");
-////            }else {
-////                surname = array[i];
-////                name = array[i + 1];
-////                patronymic = array[i + 2];
-////            }
-////            break;
-////        }
-////        System.out.println(contact);
-////        return contact;
-//
-//    }
 
     public static void writeContacts(String code) {
 
