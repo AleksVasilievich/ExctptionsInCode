@@ -6,7 +6,8 @@ public class Button {
         //VerifyWriteContacts.decoder(VerifyWriteContacts.parseNumContacts(VerifyWriteContacts.inputContacts()));
         //VerifyWriteContacts.writeContacts(VerifyWriteContacts.inputContacts());
         //VerifyWriteContacts.writeContacts(VerifyWriteContacts.decoder(VerifyWriteContacts.parseNumContacts(VerifyWriteContacts.inputContacts())));
-        VerifyWriteContacts.parseFormatContacts(VerifyWriteContacts.inputContacts());
+        //VerifyWriteContacts.parseFormatContacts(VerifyWriteContacts.inputContacts());
+        VerifyWriteContacts.writeContacts(VerifyWriteContacts.parseFormatContacts(VerifyWriteContacts.decoder(VerifyWriteContacts.parseNumContacts(VerifyWriteContacts.inputContacts()))));
 
 
 
