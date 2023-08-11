@@ -2,6 +2,8 @@ package ExceptionsInProgramming.Task3;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Array;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -29,20 +31,19 @@ import java.util.Scanner;
 
 public class VerifyWriteContacts {
 
-    public static String inputContacts(){
+    public static String inputContacts() {
 
-        Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
-        System.out.println(line);
-        return line;
-//        return "Петров Пётр Петрович 12.12.2012 89121212121 m";
-
+//        Scanner in = new Scanner(System.in);
+//        String line = in.nextLine();
+//        System.out.println(line);
+//        return line;
+        return "Петров Пётр Петрович 12.12.2012 89121212121 m";
     }
 
     public static String parseNumContacts(String str) {
 
         String[] strArray = str.split(" ");
-        if (strArray.length < 6)  {
+        if (strArray.length < 6) {
             return "-1";
         } else if (strArray.length > 6) {
             return "1";
@@ -50,7 +51,7 @@ public class VerifyWriteContacts {
         return str;
     }
 
-    public static String decoder(String code){
+    public static String decoder(String code) {
 
         switch (code) {
             case "-1" -> {
@@ -61,22 +62,42 @@ public class VerifyWriteContacts {
                 System.out.println("Количество введённых данные больше чем требуется");
                 Button.button();
             }
-            case "0" ->  System.out.println("Количество введённых данных соответствует требованиям");
+            case "0" -> System.out.println("Количество введённых данных соответствует требованиям");
         }
         return code;
     }
+    public static String parseFormatContacts(String str) {
 
-    public static void parseFormatContacts(String str){
+        String[] array = str.split(" ");
+        System.out.println(Arrays.toString(array));
+        String surname = null;
+        String name = null;
+        String patronymic = null;
+        String date = null;
+        String fone = null;
+        String gender = null;
+        String contact = surname + " " + name + " " + patronymic + " " + date + " " + fone + " " + gender;
+        for (int i = 0; i < array.length; i++) {
+            Boolean flag = array[i].matches("\\D*");
+            if (flag) {
+                surname = array[i];
+                name = array[i + 1];
+                patronymic = array[i + 2];
+                System.out.println(surname + " " +  name + " " + patronymic);
+            }
+        //return contact;
+        break;
 
-        String[] strArray = str.split(" ");
+        }
+        return contact;
+
     }
-
-    public static void writeContacts(String code) {
+    public static void writeContacts (String code){
 
         if (code.length() > 2) {
             FileWriter fileWriter;
             try {
-                fileWriter = new FileWriter("src/ExceptionsInProgramming/Task3/1.txt",true);
+                fileWriter = new FileWriter("src/ExceptionsInProgramming/Task3/1.txt", true);
                 fileWriter.write(code);
                 fileWriter.append('\n');
                 fileWriter.flush();
@@ -85,7 +106,20 @@ public class VerifyWriteContacts {
                 throw new RuntimeException(e);
             }
         }
-
     }
+
+
 }
+
+
+
+
+
+//
+
+
+//
+
+
+
 
