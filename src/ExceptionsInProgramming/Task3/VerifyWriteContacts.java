@@ -34,13 +34,13 @@ public class VerifyWriteContacts {
 
     public static String inputContacts() {
 
-//        Scanner in = new Scanner(System.in);
-//        String line = in.nextLine();
-//        System.out.println(line);
-//        return line;
+        Scanner in = new Scanner(System.in);
+        String line = in.nextLine();
+        System.out.println(line);
+        return line;
         //return "Петров Пётр Петрович 12.12.2012 89121212121 m";
         //return "12.12.212 89121212121t Ветров1 Пётр Петрович m2";
-        return "m Быстров Пётр Петрович 12.12.2012 89121212121";
+        //return "m Быстров Пётр Петрович 12.12.2012 89121212121";
     }
 
     public static String parseNumContacts(String str) {
@@ -90,7 +90,7 @@ public class VerifyWriteContacts {
                     patronymic = array[i];
                 }
             }
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(("Строки !!! - surname name patronymic - !!! содержит недопустимые символы"));
             System.out.println(e.getMessage());
         }
@@ -102,7 +102,7 @@ public class VerifyWriteContacts {
                     System.out.println(contact);
                 }
             }
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(("Строка !!! - date - !!! содержит недопустимые символы"));
             System.out.println(e.getMessage());
         }
@@ -114,7 +114,7 @@ public class VerifyWriteContacts {
                     System.out.println(contact);
                 }
             }
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(("Строка !!! - phoneNumber - !!! содержит недопустимые символы"));
             System.out.println(e.getMessage());
 
@@ -151,8 +151,6 @@ public class VerifyWriteContacts {
             }
         }
     }
-
-
 }
 
 
