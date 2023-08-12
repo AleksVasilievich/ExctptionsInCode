@@ -39,8 +39,8 @@ public class VerifyWriteContacts {
 //        System.out.println(line);
 //        return line;
         //return "Петров Пётр Петрович 12.12.2012 89121212121 m";
-        //return "12.12.2012 89121212121 Петров Пётр Петрович m";
-        return "m Петров Пётр Петрович 12.12.2012 89121212121";
+        //return "12.12.212 89121212121t Ветров1 Пётр Петрович m2";
+        return "m Быстров Пётр Петрович 12.12.2012 89121212121";
     }
 
     public static String parseNumContacts(String str) {
@@ -70,7 +70,7 @@ public class VerifyWriteContacts {
         return code;
     }
 
-    public static String parseFormatContacts(String str){
+    public static String parseFormatContacts(String str) throws IllegalArgumentException {
         String[] array = str.split(" ");
         String surname = "";
         String name = "";
@@ -80,38 +80,59 @@ public class VerifyWriteContacts {
         String gender = "";
         String contact = "";
 
-
-
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("[а-яА-ЯёЁ]+")){
-                surname = array[i];i++;
-                name = array[i];i++;
-                patronymic = array[i];
-            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+        try {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].matches("[а-яА-ЯёЁ]+")) {
+                    surname = array[i];
+                    i++;
+                    name = array[i];
+                    i++;
+                    patronymic = array[i];
+                }
+            }
+        }catch (IllegalArgumentException e) {
+            System.out.println(("Строки !!! - surname name patronymic - !!! содержит недопустимые символы"));
+            System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
-                date = array[i];
-                System.out.println(contact);
-            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+        try {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
+                    date = array[i];
+                    System.out.println(contact);
+                }
+            }
+        }catch (IllegalArgumentException e) {
+            System.out.println(("Строка !!! - date - !!! содержит недопустимые символы"));
+            System.out.println(e.getMessage());
         }
 
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("\\d{11}")) {
-                phoneNumber = array[i];
-                System.out.println(contact);
-            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+        try {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].matches("\\d{11}")) {
+                    phoneNumber = array[i];
+                    System.out.println(contact);
+                }
+            }
+        }catch (IllegalArgumentException e) {
+            System.out.println(("Строка !!! - phoneNumber - !!! содержит недопустимые символы"));
+            System.out.println(e.getMessage());
+
         }
 
-                for (int i = 0; i < array.length; i++){
-             if (array[i].matches("[mf]")) {
-                 gender = array[i];
-                 contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
-                 System.out.println(contact);
-            } //else throw new IllegalArgumentException("Строка содержит недопустимые символы");
+        try {
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].matches("[mf]")) {
+                    gender = array[i];
+                    contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(("Строка !!! - gender - !!! содержит  недопустимые символы"));
+            System.out.println(e.getMessage());
         }
         return contact;
+
     }
 
     public static void writeContacts(String code) {
