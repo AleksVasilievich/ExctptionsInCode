@@ -31,26 +31,18 @@ import java.util.regex.Pattern;
 
 public class VerifyWriteContacts {
 
-
     public static String inputContacts() {
-//        try (Scanner in = new Scanner(System.in)) {
-//            String line = in.nextLine();
-//            System.out.println(line);
-//            return line;
-//        } catch (Exception e){
-//            e.getMessage();
-//        }finally {
-//
-//        }
-            //e.printStackTrace();
 
-        Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
-        System.out.println(line);
+//        Scanner in = new Scanner(System.in);
+//        String line = in.nextLine();
+//        System.out.println(line);
+//        return line;
+        String line = "Сидоров Сидор Сидорович 03.04.2023 34343434343 m";
+//        line = "Петров Пётр Петрович 12.12.2012 89121212121 m";
+//        line = "12.12.212 89121212121t Ветров1 Пётр Петрович m2";
+//        line = "m Быстров Пётр Петрович 12.12.2012 89121212121";
+        System.out.println("1");
         return line;
-        //return "Петров Пётр Петрович 12.12.2012 89121212121 m";
-        //return "12.12.212 89121212121t Ветров1 Пётр Петрович m2";
-        //return "m Быстров Пётр Петрович 12.12.2012 89121212121";
     }
 
     public static String parseNumContacts(String str) {
@@ -61,6 +53,7 @@ public class VerifyWriteContacts {
         } else if (strArray.length > 6) {
             return "1";
         }
+        System.out.println("2");
         return str;
     }
 
@@ -77,10 +70,11 @@ public class VerifyWriteContacts {
             }
             case "0" -> System.out.println("Количество введённых данных соответствует требованиям");
         }
+        System.out.println("3");
         return code;
     }
 
-    public static String parseFormatContacts(String str) throws IllegalArgumentException {
+    public static String parseFormatContacts(String str) throws InvalidContactException, IOException {
         String[] array = str.split(" ");
         String surname = "";
         String name = "";
@@ -90,7 +84,10 @@ public class VerifyWriteContacts {
         String gender = "";
         String contact = "";
 
-        try {
+        System.out.println("4/1");
+        System.out.println(str);
+
+        if (true) {
             for (int i = 0; i < array.length; i++) {
                 if (array[i].matches("[а-яА-ЯёЁ]+")) {
                     surname = array[i];
@@ -98,57 +95,39 @@ public class VerifyWriteContacts {
                     name = array[i];
                     i++;
                     patronymic = array[i];
+                    System.out.println("4/2");
                 }
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(("Строки !!! - surname name patronymic - !!! содержит недопустимые символы"));
-            System.out.println(e.getMessage());
-        }
+        } else throw new InvalidContactException("Неверный формат ФИО");
 
-        try {
+        if (true){
             for (int i = 0; i < array.length; i++) {
                 if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
                     date = array[i];
                     System.out.println(contact);
                 }
             }
-        } catch (Exception e) {
-            System.out.println(("Строка !!! - date - !!! содержит недопустимые символы"));
-            System.out.println(e.getMessage());
-        }
+        } else throw new InvalidContactException("Неверный формат даты");
 
-        try {
+        if (true){
             for (int i = 0; i < array.length; i++) {
                 if (array[i].matches("\\d{11}")) {
                     phoneNumber = array[i];
                     System.out.println(contact);
                 }
             }
-        } catch (IllegalArgumentException e) {
-            System.out.println(("Строка !!! - phoneNumber - !!! содержит недопустимые символы"));
-            System.out.println(e.getMessage());
+        } else throw new InvalidContactException("Неверный формат номера телефона");
 
-        }
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].matches("[mf]")) {
-                gender = array[i];
-                contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
+        if (true){
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].matches("[mf]")) {
+                    gender = array[i];
+                    contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
+                }
             }
-        }
-
-//        try {
-//            for (int i = 0; i < array.length; i++) {
-//                if (array[i].matches("[mf]")) {
-//                    gender = array[i];
-//                    contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
-//                }
-//            }
-//        } catch (IllegalArgumentException e) {
-//            System.out.println(("Строка !!! - gender - !!! содержит  недопустимые символы"));
-//            System.out.println(e.getMessage());
-//        }
+        } else throw new InvalidContactException("Неверный формат пола");
+        System.out.println("4");
         return contact;
-
     }
 
     public static void writeContacts(String code) {
@@ -163,7 +142,8 @@ public class VerifyWriteContacts {
                 fileWriter.flush();
                 System.out.println("Данные успешно сохранены \n" + code);
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
+                e.getMessage();
             }
         }
     }

@@ -1,5 +1,7 @@
 package ExceptionsInProgramming.Task3_1;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -25,54 +27,68 @@ import java.util.Scanner;
 
 public class Contakts {
 
-    private String contacts;
-    private String surname;
-    private String name;
-    private String patronymic;
-    private String date;
-    private String gender;
-    public Contakts(String contacts) {
-        this.contacts = contacts;
-    }
-    public String getContacts() {
-        return contacts;
-    }
-
-    public void setContacts(String contacts) {
-        this.contacts = contacts;
-    }
     public static void main(String[] args) {
         System.out.println("Приложение  - Контакты - надёжно хранит ваши персональные данные !!!");
         System.out.println("Введите ваши данные в виде: Фамилия Имя Отчество дата рождения номер телефона пол");
-        inputDate();
-        System.out.println();
-    }
-
-    public static void inputDate(){  // Ввод данных.
+        //String input = "Петров Пётр Петрович 12.12.2012 89121212121 m";
         Scanner in = new Scanner(System.in);
-        String line = in.nextLine();
-        System.out.println(line);
-        new Contakts(line);
+        String input = in.nextLine();
+
+        try {
+            workInContacts(input);
+        }catch (InvalidContactException e) {
+            System.out.println(e.getMessage());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void inputContact(){
 
     }
 
-    public static void runApDate(){ // Подготовка данных.
+    public static void workInContacts(String input) throws InvalidContactException, IOException {
+        String[] contact = input.split(" ");
 
-        //Contakts contakts = new Contakts();
+        if (contact.length != 6) {
+            throw new InvalidContactException("Неверное количество данных");
+        }
+        String surname = contact[0];
+        String name = contact[1];
+        String patronymic = contact[2];
+        String data = contact[3];
+        String fone = contact[4];
+        String genler = contact[5];
 
+        if(!name.matches("[а-яА-ЯёЁ]+")){
+            throw  new InvalidContactException("Неверный формат фамилии");
+        }
+        if(!surname.matches("[а-яА-ЯёЁ]+")){
+            throw  new InvalidContactException("Неверный формат имени");
+        }
+        if(!patronymic.matches("[а-яА-ЯёЁ]+")){
+            throw  new InvalidContactException("Неверный формат фамилии");
+        }
+        if(!data.matches("\\d{2}\\.\\d{2}\\.\\d{4}")){
+            throw  new InvalidContactException("Неверный формат даты");
+        }
+        if(!fone.matches("\\d{11}")){
+            throw  new InvalidContactException("Неверный формат номера телефона");
+        }
+        if(!genler.matches("[mf]")){
+            throw  new InvalidContactException("Неверный формат пола");
+        }
+
+        FileWriter fileWriter = new FileWriter(surname + ".txt",true);
+        fileWriter.write(surname + " " + name + " " + patronymic + " " + data + " " + fone + " " + genler);
+        fileWriter.close();
+        System.out.println(surname + " " + name + " " + patronymic + " " + data + " " + fone + " " + genler);
     }
-
-    public static void checkDate(){ // Проверка данных.
-
-    }
-
-    public static void printDate(){  //Печать данных.
-
-
-    }
-
-
-
-
 
 }
+class InvalidContactException extends Exception {
+    public InvalidContactException(String message){
+        super(message);
+    }
+}
+
