@@ -31,17 +31,16 @@ import java.util.regex.Pattern;
 
 public class VerifyWriteContacts {
 
-    public static String inputContacts() {
+    public static String inputContacts(){
 
 //        Scanner in = new Scanner(System.in);
 //        String line = in.nextLine();
 //        System.out.println(line);
 //        return line;
-        String line = "Сидоров Сидор Сидорович 03.04.2023 34343434343 m";
-//        line = "Петров Пётр Петрович 12.12.2012 89121212121 m";
-//        line = "12.12.212 89121212121t Ветров1 Пётр Петрович m2";
-//        line = "m Быстров Пётр Петрович 12.12.2012 89121212121";
-        System.out.println("1");
+//        String line = "Сидоров Сидор Сидорович 03.04.2023 34343434343 m";
+        String line = "Петров1 Пётр Петрович 12.12.2012 89121212121 m";
+        //String line = "12.12.2020 89121212121 Ветров Пётр Петрович m";
+//        String line = "m Быстров Пётр Петрович 12.12.2012 89121212121";
         return line;
     }
 
@@ -53,9 +52,9 @@ public class VerifyWriteContacts {
         } else if (strArray.length > 6) {
             return "1";
         }
-        System.out.println("2");
         return str;
     }
+
 
     public static String decoder(String code) {
 
@@ -70,65 +69,104 @@ public class VerifyWriteContacts {
             }
             case "0" -> System.out.println("Количество введённых данных соответствует требованиям");
         }
-        System.out.println("3");
         return code;
     }
 
     public static String parseFormatContacts(String str) throws InvalidContactException, IOException {
         String[] array = str.split(" ");
-        String surname = "";
-        String name = "";
-        String patronymic = "";
-        String date = "";
-        String phoneNumber = "";
-        String gender = "";
-        String contact = "";
 
-        System.out.println("4/1");
-        System.out.println(str);
+        String surname = array[0];
+        String name = array[1];
+        String patronymic = array[2];
+        String date = array[3];
+        String phoneNumber = array[4];
+        String gender = array[5];
+        String contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
+        System.out.println("--1");
+//        int num = 0;
+//        for (int i = 0; i < array.length; i++){
+//            if (array[i].matches("[а-яА-ЯёЁ]+")){
+//                num++;
+//            }
+//        }
+//        System.out.println(num);
+//        if (num != 3){
+//            throw new IOException("Неверный формат ФИО");
+//        }
 
-        if (true) {
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].matches("[а-яА-ЯёЁ]+")) {
-                    surname = array[i];
-                    i++;
-                    name = array[i];
-                    i++;
-                    patronymic = array[i];
-                    System.out.println("4/2");
-                }
-            }
-        } else throw new InvalidContactException("Неверный формат ФИО");
 
-        if (true){
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
-                    date = array[i];
-                    System.out.println(contact);
-                }
-            }
-        } else throw new InvalidContactException("Неверный формат даты");
+        if (!surname.matches("[а-яА-ЯёЁ]+")) {
+            //throw new InvalidContactException("Неверный формат фамилии");
+            System.out.println("Неверный формат фамилии");
+            throw new InvalidContactException("Неверный формат фамилии");
+        }
+        if (!name.matches("[а-яА-ЯёЁ]+")) {
+            //throw new InvalidContactException("Неверный формат имени");
+            System.out.println("Неверный формат имени");
+        }
+        if (!patronymic.matches("[а-яА-ЯёЁ]+")) {
+            //throw new InvalidContactException("Неверный формат отчества");
+            System.out.println("Неверный формат отчества");
+        }
+        if (!date.matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
+            //throw new InvalidContactException("Неверный формат даты");
+            System.out.println("Неверный формат даты");
+        }
+        if (!phoneNumber.matches("\\d{11}")) {
+            //throw new InvalidContactException("Неверный формат номера телефона");
+            System.out.println("Неверный формат номера телефона");
+        }
+        if (!gender.matches("[mf]")) {
+            //throw new InvalidContactException("Неверный формат пола");
+            System.out.println("Неверный формат пола");
+        }
+        System.out.println("--2");
 
-        if (true){
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].matches("\\d{11}")) {
-                    phoneNumber = array[i];
-                    System.out.println(contact);
-                }
-            }
-        } else throw new InvalidContactException("Неверный формат номера телефона");
-
-        if (true){
-            for (int i = 0; i < array.length; i++) {
-                if (array[i].matches("[mf]")) {
-                    gender = array[i];
-                    contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
-                }
-            }
-        } else throw new InvalidContactException("Неверный формат пола");
-        System.out.println("4");
         return contact;
     }
+//        String[] array = str.split(" ");
+//        String surname = "";
+//        String name = "";
+//        String patronymic = "";
+//        String date = "";
+//        String phoneNumber = "";
+//        String gender = "";
+//        String contact = "";
+//
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("[а-яА-ЯёЁ]+")) {
+//                surname = array[i];
+//                i++;
+//                name = array[i];
+//                i++;
+//                patronymic = array[i];
+//            }
+//        }
+//
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
+//                date = array[i];
+//            }
+//        }
+//
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("\\d{11}")) {
+//                phoneNumber = array[i];
+//            }
+//        }
+//
+//        for (int i = 0; i < array.length; i++) {
+//            if (array[i].matches("[mf]")) {
+//                gender = array[i];
+//                contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
+//            }
+//        }
+//
+//
+//        return contact;
+
+//    }
+
 
     public static void writeContacts(String code) {
         String[] arr = code.split(" ");

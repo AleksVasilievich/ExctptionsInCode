@@ -30,9 +30,9 @@ public class Contakts {
     public static void main(String[] args) {
         System.out.println("Приложение  - Контакты - надёжно хранит ваши персональные данные !!!");
         System.out.println("Введите ваши данные в виде: Фамилия Имя Отчество дата рождения номер телефона пол");
-        //String input = "Петров Пётр Петрович 12.12.2012 89121212121 m";
-        Scanner in = new Scanner(System.in);
-        String input = in.nextLine();
+        String input = "Петров Пётр Петрович 12.12.2012 89121212121 m";
+//        Scanner in = new Scanner(System.in);
+//        String input = in.nextLine();
 
         try {
             workInContacts(input);
@@ -58,12 +58,12 @@ public class Contakts {
         String patronymic = contact[2];
         String data = contact[3];
         String fone = contact[4];
-        String genler = contact[5];
+        String gender = contact[5];
 
-        if(!name.matches("[а-яА-ЯёЁ]+")){
+        if(!surname.matches("[а-яА-ЯёЁ]+")){
             throw  new InvalidContactException("Неверный формат фамилии");
         }
-        if(!surname.matches("[а-яА-ЯёЁ]+")){
+        if(!name.matches("[а-яА-ЯёЁ]+")){
             throw  new InvalidContactException("Неверный формат имени");
         }
         if(!patronymic.matches("[а-яА-ЯёЁ]+")){
@@ -75,14 +75,14 @@ public class Contakts {
         if(!fone.matches("\\d{11}")){
             throw  new InvalidContactException("Неверный формат номера телефона");
         }
-        if(!genler.matches("[mf]")){
+        if(!gender.matches("[mf]")){
             throw  new InvalidContactException("Неверный формат пола");
         }
 
         FileWriter fileWriter = new FileWriter(surname + ".txt",true);
-        fileWriter.write(surname + " " + name + " " + patronymic + " " + data + " " + fone + " " + genler);
+        fileWriter.write(surname + " " + name + " " + patronymic + " " + data + " " + fone + " " + gender);
         fileWriter.close();
-        System.out.println(surname + " " + name + " " + patronymic + " " + data + " " + fone + " " + genler);
+        System.out.println(surname + " " + name + " " + patronymic + " " + data + " " + fone + " " + gender);
     }
 
 }
