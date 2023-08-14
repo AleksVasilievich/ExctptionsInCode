@@ -30,7 +30,7 @@ public class Contakts {
     public static void main(String[] args) {
         System.out.println("Приложение  - Контакты - надёжно хранит ваши персональные данные !!!");
         System.out.println("Введите ваши данные в виде: Фамилия Имя Отчество дата рождения номер телефона пол");
-        String input = "Петров Пётр Петрович 12.12.2012 89121212121 m";
+        String input = "Петров Пётр Петрович 12.12.20121 89121212121 m";
 //        Scanner in = new Scanner(System.in);
 //        String input = in.nextLine();
 

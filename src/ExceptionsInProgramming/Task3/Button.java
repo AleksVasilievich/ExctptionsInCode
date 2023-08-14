@@ -8,9 +8,11 @@ public class Button {
         try {
             VerifyWriteContacts.writeContacts(VerifyWriteContacts.parseFormatContacts(VerifyWriteContacts.decoder(VerifyWriteContacts.parseNumContacts(VerifyWriteContacts.inputContacts()))));
         } catch (InvalidContactException e){
-            e.getMessage();
+            System.out.println(e.getMessage());
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println("Error");
+            System.out.println(e.getMessage());
+            //e.printStackTrace();
         }
     }
 }
