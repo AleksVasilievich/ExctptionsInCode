@@ -7,12 +7,8 @@ public class Button {
         System.out.println("Введите данные в формате : - (фамилия имя отчество дата_рождения номер_телефона пол) - через пробел");
         try {
             VerifyWriteContacts.writeContacts(VerifyWriteContacts.parseFormatContacts(VerifyWriteContacts.decoder(VerifyWriteContacts.parseNumContacts(VerifyWriteContacts.inputContacts()))));
-        } catch (InvalidContactException e){
+        } catch (InvalidContactException | IOException e){
             System.out.println(e.getMessage());
-        } catch (IOException e){
-            System.out.println("Error");
-            System.out.println(e.getMessage());
-            //e.printStackTrace();
         }
     }
 }
