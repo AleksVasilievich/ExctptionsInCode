@@ -81,47 +81,7 @@ public class VerifyWriteContacts {
 
     public static String parseFormatContacts(String str) throws InvalidContactException, IOException {
 
-//        String[] array = str.split(" ");
-//        String surname = array[0];
-//        String name = array[1];
-//        String patronymic = array[2];
-//        String date = array[3];
-//        String phoneNumber = array[4];
-//        String gender = array[5];
-//        String contact = surname + " " + name + " " + patronymic + " " + date + " " + phoneNumber + " " + gender;
-//       // System.out.println("--1");
-//        int num = 0;
-//        for (int i = 0; i < array.length; i++){
-//            if (array[i].matches("[а-яА-ЯёЁ]+")){
-//                num++;
-//            }
-//        }
-//        System.out.println(num);
-//        if (num != 3){
-//            throw new InvalidContactException("Неверный формат ФИО");
-//        }
-//        if (!surname.matches("[а-яА-ЯёЁ]+")) {
-//            throw new InvalidContactException("Неверный формат фамилии");
-//        }
-//        if (!name.matches("[а-яА-ЯёЁ]+")) {
-//            throw new InvalidContactException("Неверный формат имени");
-//        }
-//        if (!patronymic.matches("[а-яА-ЯёЁ]+")) {
-//            throw new InvalidContactException("Неверный формат отчества");
-//        }
-//        if (!date.matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
-//            throw new InvalidContactException("Неверный формат даты");
-//        }
-//        if (!phoneNumber.matches("\\d{11}")) {
-//            throw new InvalidContactException("Неверный формат номера телефона");
-//        }
-//        if (!gender.matches("[mf]")) {
-//            throw new InvalidContactException("Неверный формат пола");
-//        }
-//        System.out.println("--2");
-//
-//        return contact;
-//    }
+
         String[] array = str.split(" ");
         String surname = "";
         String name = "";
@@ -130,16 +90,6 @@ public class VerifyWriteContacts {
         String phoneNumber = "";
         String gender = "";
         String contact = "";
-//        int num = 0;
-//        for (int i = 0; i < array.length; i++){
-//            if (array[i].matches("[а-яА-ЯёЁ]+")) {
-//               num++;
-//            }
-//        }
-//        System.out.println(num);
-//        if (num != 3){
-//            throw new InvalidContactException("Неверный формат ФИО");
-//        }
 
         if (false){
             throw new ArrayIndexOutOfBoundsException ();
@@ -154,20 +104,6 @@ public class VerifyWriteContacts {
                 }
             }
         }
-
-//        try {
-//            for (int i = 0; i < array.length; i++) {
-//                if (array[i].matches("[а-яА-ЯёЁ]+")) {
-//                    surname = array[i];
-//                    i++;
-//                    name = array[i];
-//                    i++;
-//                    patronymic = array[i];
-//                }
-//            }
-//        }catch (ArrayIndexOutOfBoundsException e){
-//            System.out.println(e.getMessage());
-//        }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
