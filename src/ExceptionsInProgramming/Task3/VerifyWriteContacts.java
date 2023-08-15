@@ -36,11 +36,12 @@ public class VerifyWriteContacts {
 //        String line = in.nextLine();
 //        System.out.println(line);
 //        return line;
-        //String line = "Сидоров Сидор Сидорович 03.04.2023 34343434343 m";
-        //String line = "Петров Пётр Петрович 12.12.2012 89121212121 m";
-        //String line = "12.12.2020 89121212121 Ветров Пётр Петрович m";
-        String line = "m Быстров 12.12.2012 Пётр Петрович 89121212121";
-        return line;
+        String line1 = "Сидоров Сидор Сидорович 03.04.2023 34343434343 m";
+        String line2 = "Петров Пётр Петрович 12.12.2012 89121212121 m";
+        String line3 = "12.12.2020 89121212121 Ветров Пётр Петрович m";
+        String line4 = "m Быстров1 12.12.2012 Пётр Петрович 89121212121";
+        String line5 = "m Быстров1 12.12.2012 Пётр1 89121212121 Петрович1";
+        return line3;
     }
 
     public static String parseNumContacts(String str) {
@@ -139,7 +140,10 @@ public class VerifyWriteContacts {
 //        if (num != 3){
 //            throw new InvalidContactException("Неверный формат ФИО");
 //        }
-        try {
+
+        if (false){
+            throw new ArrayIndexOutOfBoundsException ();
+        }else {
             for (int i = 0; i < array.length; i++) {
                 if (array[i].matches("[а-яА-ЯёЁ]+")) {
                     surname = array[i];
@@ -149,13 +153,21 @@ public class VerifyWriteContacts {
                     patronymic = array[i];
                 }
             }
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.out.println(e.getMessage());
         }
 
-
-
-
+//        try {
+//            for (int i = 0; i < array.length; i++) {
+//                if (array[i].matches("[а-яА-ЯёЁ]+")) {
+//                    surname = array[i];
+//                    i++;
+//                    name = array[i];
+//                    i++;
+//                    patronymic = array[i];
+//                }
+//            }
+//        }catch (ArrayIndexOutOfBoundsException e){
+//            System.out.println(e.getMessage());
+//        }
 
         for (int i = 0; i < array.length; i++) {
             if (array[i].matches("\\d{2}\\.\\d{2}\\.\\d{4}")) {
