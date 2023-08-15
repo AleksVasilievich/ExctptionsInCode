@@ -79,7 +79,7 @@ public class VerifyWriteContacts {
         return code;
     }
 
-    public static String parseFormatContacts(String str) throws InvalidContactException, IOException {
+    public static String parseFormatContacts(String str) throws InvalidContactException, ArrayIndexOutOfBoundsException, IOException{
 
 
         String[] array = str.split(" ");
